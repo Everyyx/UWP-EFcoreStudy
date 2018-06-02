@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="MyUWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyUWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    
+    xmlns:Model="using:MyUWP.Models"
+    Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBox x:Name="Tb_RoomId" Header="RoomId" />
+            <TextBox x:Name="Tb_RoomName" Header="RoomName"/>
+            <TextBox x:Name="Tb_I2CAddress" Header="I2C_Slave_Address"/>
+            <TextBox x:Name="Tb_RoomImgaePath" Header="RoomImagePath"/>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="AddRoomBt" Content="Add" Click="AddRoomBt_Click"/>
+                <Button x:Name="DeletRoomBt" Content="Delete" Click="DeletRoomBt_Click"/>
+                <Button x:Name="UpdateRoomBt" Content="Update" Click="UpdateRoomBt_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <ListView Grid.Row="1" x:Name="RoomsListView" ItemClick="RoomsListView_ItemClick" IsItemClickEnabled="True">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="Model:Room">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{x:Bind RoomId}"/>
+                        <TextBlock Text="{x:Bind RoomName}"/>
+                        <TextBlock Text="{x:Bind I2C_Slave_Address}"/>
+                        <TextBlock Text="{x:Bind RoomImagePath}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
